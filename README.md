@@ -26,11 +26,17 @@ Logs are in a tab separated CSV file with each row as a Time/Value pair.  Note t
 For Example,
 
 Timestamp		Value
+
 2011-03-07 06:25:32	2
+
 2011-03-07 09:15:55	3	← Indicates a stage change as previous recorded value is ‘2’
+
 2011-03-07 12:00:00	3	← Redundant recording, possibly a “heartbeat”
+
 2011-03-07 12:03:27	2	← Indicates a stage change
+
 2011-03-07 20:23:01	0
+
 
 Logs may contain any number of entries.  The end of a log is indicated by exhaustion of the Reader (i.e., no more data is available).
 

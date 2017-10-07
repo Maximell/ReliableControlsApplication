@@ -58,7 +58,12 @@ The interface for constructing your solution in C# is provided, however you are 
   2. Any code you devised to test your implementation
   3. Any artifacts you feel are relevant (e.g., build instructions, notes on your approach, etc.)
 
+## Bonus Challenge (not actually bonus): Basic MVC Website
+Create a simple MVC website to display accumulated results.
 
+A main index page should list all devices and their associated count values
+
+The results should update dynamically on the client either every second, or every time the data changes. 
 
 
 

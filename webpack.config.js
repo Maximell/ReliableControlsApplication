@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-module.exports = {
+var webpack = require('webpack');  
+module.exports = {  
   entry: [
     "./js/app.js"
   ],
@@ -13,11 +13,12 @@ module.exports = {
         test: /\.js?$/,
         loader: 'babel-loader',
         query: {
-          presets: ['env', 'react']
+          presets: ['es2015', 'react']
         },
         exclude: /node_modules/
       }
     ]
   },
-  plugins: []
+  plugins: [
+  ]
 };

@@ -1,4 +1,20 @@
 # ReliableControlsApplication
+## Installation
+### You will need the following package managers:
+  - pip
+  - npm
+### For quick setup, run the following commands:
+  $ pip install virtualenv
+  $ virtualenv venv; source venv/bin/activate
+  $ pip install -r requirements.txt
+  $ npm install -g webpack; npm install
+
+### Run the backend
+  $ python app.py
+
+### Run the front-end
+  $ webpack --watch
+
 ## Objective
 Implement a processor that looks for and counts specific patterns in an event log.
 

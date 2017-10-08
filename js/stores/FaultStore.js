@@ -1,6 +1,6 @@
-var AppDispatcher = require('../dispatcher/dispatcher');
+var AppDispatcher = require('../dispatchers/dispatcher');
 var EventEmitter = require('events').EventEmitter;
-var merge = require('react/lib/merge');
+var merge = require('merge');
 
 // Internal faults object
 var _faults = {}
@@ -13,7 +13,7 @@ var FaultStore = merge(EventEmitter.prototype, {
   // Return all faults
   getFaults: function() {
     return _faults;
-  }
+  },
 
   emitChange: function() {
     this.emit('change');

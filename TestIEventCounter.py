@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import unittest
 from IEventCounter import IEventCounter
 
@@ -10,6 +9,12 @@ class TestIEventCounter(unittest.TestCase):
         f = open('./TestInputs/input1.csv', 'r')
         eventCounter.parseEvents("testDevice1", f)
         self.assertEqual(1, eventCounter.getEventCount("testDevice1"))
+
+    def testInput2(self):
+        eventCounter = IEventCounter()
+        f = open('./TestInputs/input2.csv', 'r')
+        eventCounter.parseEvents("testDevice2", f)
+        self.assertEqual(2, eventCounter.getEventCount("testDevice2"))
 
 if __name__ == '__main__':
     unittest.main()

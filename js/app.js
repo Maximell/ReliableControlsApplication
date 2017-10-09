@@ -14,15 +14,17 @@ var dispatcher = new Dispatcher();
 
 // BEGIN FaultStore Component
 // Internal faults object
-var _faults = {}
+var _faults = 0
 
 function receiveFaults(data) {
-  _faults = data.faults;
+  alert("receiveFaults");
+  _faults = _faults + 1;
 }
 
 var FaultStore = merge(EventEmitter.prototype, {
   // Return all faults
   getFaults: function() {
+    receiveFaults();
     return _faults;
   },
 
@@ -44,7 +46,8 @@ dispatcher.register(function(payload) {
   var action = payload.action;
   // define what to do for certain actions
   switch(action.actionType) {
-    case "FAULTS_RECEIVED":
+    case "UPDATE_FAULTS":
+      alert("here2");
       receiveFaults(action.data);
       break;
     default:
@@ -55,15 +58,22 @@ dispatcher.register(function(payload) {
 });
 // END FaultStore Component
 
+
+// BEGIN FaultActions
+function updateFaults() {
+  dispatcher.dispatch({
+    "type": "UPDATE_FAULTS",
+    "data": {}
+  });
+}
+// END FaultActions
+
+
 // BEGIN FaultList Component
 function getAppState() {
-  // return {
-  //   faults: FaultStore.getFaults()
-  // };
   return {
     faults: {
-      "device1": 4,
-      "device2": 86
+      faults: FaultStore.getFaults()
     }
   }
 }
@@ -76,19 +86,22 @@ var FaultList = React.createClass({
   // Listen for changes
   componentDidMount: function() {
     FaultStore.addChangeListener(this._onChange);
+    this.interval = setInterval(alert("here5"), 500);
   },
   // Unbind change listener
   componentWillUnmount: function() {
     FaultStore.removeChangeListener(this._onChange);
+    clearInterval(this.interval);
   },
   _renderFaults: function() {
-    return <li>fault</li>;
+    return <li>fault{this.state.faults.faults}</li>;
   },
   render() {
     return <ul>{this._renderFaults()}</ul>;
   },
   // Update view when change event is received
   _onChange: function() {
+    alert("change triggered");
     this.setState(getAppState());
   }
 });

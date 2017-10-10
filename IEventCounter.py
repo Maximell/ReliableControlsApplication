@@ -45,7 +45,12 @@ class IEventCounter:
         return result
 
 
-
+    # Summary
+    #   Count faults in the parsedEventLog
+    # Param parsedEventLog
+    #   A list of dictionaries [{timeInState, state}, ...]
+    # Returns
+    #   Number of faults found in the parsed log file
     def _countParsedLog(self, parsedEventLog):
         # count the number of failures in the parsed log file
         # A failure is defined as:

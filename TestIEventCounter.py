@@ -89,5 +89,21 @@ class TestIEventCounter(unittest.TestCase):
         self.assertEqual(2, eventCounter.getEventCount("testDevice1"))
         self.assertEqual(4, eventCounter.getEventCount("testDevice2"))
 
+    # Test multiple transitions between stages 2 & 3 in input file
+    def testInput8(self):
+        eventCounter = IEventCounter()
+        f = open('./TestInputs/input8.csv', 'r')
+        eventCounter.parseEvents("testDevice8", f)
+        f.close()
+        self.assertEqual(1, eventCounter.getEventCount("testDevice8"))
+
+    # Tests finding a pattern with excess before & after
+    def testInput9(self):
+        eventCounter = IEventCounter()
+        f = open('./TestInputs/input9.csv', 'r')
+        eventCounter.parseEvents("testDevice9", f)
+        f.close()
+        self.assertEqual(1, eventCounter.getEventCount("testDevice9"))
+
 if __name__ == '__main__':
     unittest.main()

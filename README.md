@@ -2,18 +2,17 @@
 ## Installation
 ### You will need the following package managers:
   - pip
-  - npm
+
 ### For quick setup, run the following commands:
   $ pip install virtualenv
+
   $ virtualenv venv; source venv/bin/activate
+
   $ pip install -r requirements.txt
-  $ npm install -g webpack; npm install
+  
 
 ### Run the backend
   $ python app.py
-
-### Run the front-end
-  $ webpack --watch
 
 ## Objective
 Implement a processor that looks for and counts specific patterns in an event log.
@@ -35,7 +34,7 @@ Your task is to implement a log parser that detects and counts occurrences of th
 Your parser should derive from the given IEventCounter interface and supply an implementation for two methods:
   1. void ParseEvents(string deviceID, StreamReader eventLog) - Inspect and parse a stream of operation records associated with a specific device, and count occurrrences of the "fault" sequence.
   2. int GetEventCount(string deviceId) - Gets the number of "fault" sequences observed for the given device.
-  
+
 ## Log Format
 Logs are in a tab separated CSV file with each row as a Time/Value pair.  Note that an entry is recorded each time the unit changes stage, however extra recordings may be taken (for a variety of reasons) that do not indicate a change of stage, and are simply redundant pieces of information.
 
@@ -72,8 +71,8 @@ We will also be evaluating the quality of the code you write and looking at the 
 
 ## Coding Instructions
 The interface for constructing your solution in C# is provided, however you are welcome to code your solution in any main-stream, Object-Oriented programming language.  Regardless of what language you choose, your submission must:
-  1. Implement the IEventCounter concept by supplying the two methods described above; and 
-  2. Include testing to demonstrate your solution calculates the correct results under a variety of input conditions. 
+  1. Implement the IEventCounter concept by supplying the two methods described above; and
+  2. Include testing to demonstrate your solution calculates the correct results under a variety of input conditions.
 
 ## What to Submit
   1. Your implementation of the IEventCounter interface
@@ -85,7 +84,4 @@ Create a simple MVC website to display accumulated results.
 
 A main index page should list all devices and their associated count values
 
-The results should update dynamically on the client either every second, or every time the data changes. 
-
-
-
+The results should update dynamically on the client either every second, or every time the data changes.

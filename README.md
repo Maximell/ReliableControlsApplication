@@ -9,10 +9,15 @@
   $ virtualenv venv; source venv/bin/activate
 
   $ pip install -r requirements.txt
-  
+
 
 ### Run the backend
   $ python app.py
+
+
+### Run the Tests
+  $ ./TestIEventCounter.py
+  
 
 ## Objective
 Implement a processor that looks for and counts specific patterns in an event log.

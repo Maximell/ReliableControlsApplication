@@ -12,7 +12,8 @@
   $ pip install -r requirements.txt
 
 
-### Run the backend
+## Running the App
+### Run the backend (this also created the database in the temp directory)
   $ python app.py
 
 
@@ -22,6 +23,7 @@
 
 ### Run the Tests
   $ ./TestIEventCounter.py
+  -You will notice fault counts for the different devices being updated.
 
 
 ## Objective

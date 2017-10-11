@@ -1,8 +1,34 @@
 <head>
   <!-- Load jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!-- Load socketio -->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
 </head>
 
 <body>
-  <h1>TODO</h1>
+  <h1>Faults</h1>
+  <ul id="faultList">
+    <li>loading faults...</li>
+  </ul>
+  <script type="text/javascript" charset="utf-8">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('connect', function() {
+      setInterval(function(){
+        socket.emit('getFaultCounts', "")
+      }, 750);
+    });
+    socket.on('message', function(json) {
+      if (json.faultList.length) {
+        faultListData = json.faultList;
+        faultList="";
+        for(var i=0; i<faultListData.length; i++) {
+          faultList += "<li>" + faultListData[i].deviceId + ": " + faultListData[i].faultCount + "</li>";
+        }
+      } else {
+        faultList = "<li>no faults</li>";
+      }
+      $("#faultList").html(faultList);
+    });
+  </script>
 </body>

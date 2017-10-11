@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 from datetime import datetime, timedelta
+from models.Models import db, Device
+from app import create_app
+
 
 class IEventCounter:
 
     def __init__(self):
-        self.deviceCounts = {}
         self.states = {
             "FSM1": 1,
             "FSM2": 2,
@@ -103,9 +105,16 @@ class IEventCounter:
     #   ID of the device that the log is associated with
     # Param eventLog
     #   A stream of lines representing time/value recordings
-    def parseEvents(self, deviceID, eventLog):
-        currentCount = self.deviceCounts.get(deviceID, 0)
-        self.deviceCounts[deviceID] = currentCount + self._countParsedLog(self._parseLog(eventLog))
+    def parseEvents(self, deviceId, eventLog):
+        app = create_app()
+        with app.app_context():
+            device = Device.query.filter_by(deviceId=deviceId).first()
+            if not device:
+                device = Device(deviceId=deviceId, faultCount=0)
+                db.session.add(device)
+            currentCount = device.faultCount
+            device.faultCount = currentCount + self._countParsedLog(self._parseLog(eventLog))
+            db.session.commit()
 
     # Summary
     #   Gets the current count of events detected for the given deviceID
@@ -113,5 +122,8 @@ class IEventCounter:
     #   The device id of the device for which the fault count will be returned
     # Returns
     #   An integer representing the number of detected events
-    def getEventCount(self, deviceID):
-        return self.deviceCounts.get(deviceID) if self.deviceCounts.get(deviceID) else 0;
+    def getEventCount(self, deviceId):
+        app = create_app()
+        with app.app_context():
+            device = Device.query.filter_by(deviceId=deviceId).first()
+            return device.faultCount if device else 0;

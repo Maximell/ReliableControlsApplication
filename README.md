@@ -3,7 +3,8 @@
 ### You will need the following package managers:
   - pip
 
-### For quick setup, run the following commands:
+
+### Create a virtualenv and install requirements
   $ pip install virtualenv
 
   $ virtualenv venv; source venv/bin/activate
@@ -15,9 +16,13 @@
   $ python app.py
 
 
+### Load the front end
+  - open localhost://5000 in your browser.
+  - There will be no faults in the system - to add some run the tests (next)
+
 ### Run the Tests
   $ ./TestIEventCounter.py
-  
+
 
 ## Objective
 Implement a processor that looks for and counts specific patterns in an event log.
